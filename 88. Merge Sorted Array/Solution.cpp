@@ -1,15 +1,18 @@
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        int ptr1 = m - 1;
-        int ptr2 = n - 1;
-        int result = m + n - 1;
-        
+        // Initialize pointers to the end of each list's relevant portion
+        int ptr1 = m - 1;  // Pointer for the end of nums1's initial segment
+        int ptr2 = n - 1;  // Pointer for the end of nums2
+        int result = m + n - 1;  // Pointer for the end of nums1's merged segment
+
+        // Iterate while there are elements in nums2 to merge
         while (ptr2 >= 0) {
+            // If there are elements in nums1 and the current element of nums1 is greater than that of nums2
             if (ptr1 >= 0 && nums1[ptr1] > nums2[ptr2]) {
-                nums1[result--] = nums1[ptr1--];
+                nums1[result--] = nums1[ptr1--];  // Place nums1's element in the correct position and move pointers
             } else {
-                nums1[result--] = nums2[ptr2--];
+                nums1[result--] = nums2[ptr2--];  // Otherwise, place nums2's element in the correct position and move pointers
             }
         }
     }
