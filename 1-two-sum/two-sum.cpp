@@ -8,7 +8,8 @@ public:
 
             if (numToIndex.find(complement) != numToIndex.end()) {
 
-                return { i, numToIndex[complement] };
+                return { numToIndex[complement], i };
+
             }
 
             numToIndex[nums[i]] = i;
