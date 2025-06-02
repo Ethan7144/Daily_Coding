@@ -1,5 +1,12 @@
 class Solution {
 public:
+    /*
+     * Problem: Minimum Size Subarray Sum (LeetCode 209)
+     * Approach: Sliding Window
+     * 
+     * Time: O(n)
+     * Space: O(1)
+     */
     int minSubArrayLen(int target, vector<int>& nums) {
         int size = nums.size();   
         int minLen = INT_MAX;
