@@ -1,50 +1,64 @@
 class Solution {
 public:
     /*
-     * DFS approach to count number of islands in a 2D grid.
+     * BFS approach to count number of islands in a 2D grid.
      *
      * Summary:
      * - Treat the grid as a graph; land cells ('1') are nodes.
-     * - For each unvisited land cell, perform DFS to "sink" the island by marking connected land as visited.
-     * - Count how many times you initiate a DFS — each one represents a new island.
+     * - Use a queue to perform BFS from each unvisited land cell.
+     * - For every land cell you visit, mark it as visited to prevent reprocessing.
+     * - Count how many times you initiate a BFS — each one represents a new island.
      *
-     * Time: O(m * n), where m = rows, n = cols
-     * Space: O(m * n) in the worst case (DFS recursion stack)
+     * Time: O(m * n), where m = number of rows, n = number of columns
+     * Space: O(min(m, n)) in the worst case for BFS queue
      */
 
-    // DFS helper to mark all connected land ('1') as visited
-    void dfs(vector<vector<char>> &grid, int r, int c) {
-        // Return if out of bounds or if current cell is not land
-        if (r < 0 || c < 0 || r >= grid.size() || c >= grid[0].size() || grid[r][c] != '1') {
-            return;
+    void bfs(vector<vector<char>>& grid, int row, int col) {
+        int m = grid.size();
+        int n = grid[0].size();
+
+        queue<pair<int, int>> q;
+        q.push({row, col});
+        grid[row][col] = '2';  // Mark as visited
+
+        // Directions: up, down, left, right
+        vector<pair<int, int>> directions = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+
+        while (!q.empty()) {
+            auto [r, c] = q.front();
+            q.pop();
+
+            for (auto [dr, dc] : directions) {
+                int newRow = r + dr;
+                int newCol = c + dc;
+
+                if (newRow >= 0 && newRow < m &&
+                    newCol >= 0 && newCol < n &&
+                    grid[newRow][newCol] == '1') {
+                    
+                    grid[newRow][newCol] = '2';  // Mark visited
+                    q.push({newRow, newCol});
+                }
+            }
         }
-
-        // Mark current cell as visited (or "sunk")
-        grid[r][c] = '2';
-
-        // Recursively visit all 4 neighboring cells (up, down, left, right)
-        dfs(grid, r + 1, c);
-        dfs(grid, r - 1, c);
-        dfs(grid, r, c + 1);
-        dfs(grid, r, c - 1);
     }
 
     int numIslands(vector<vector<char>>& grid) {
         if (grid.empty()) return 0;
 
-        int ans = 0;
+        int islandCount = 0;
+        int m = grid.size();
+        int n = grid[0].size();
 
-        // Scan entire grid
-        for (int i = 0; i < grid.size(); i++) {
-            for (int j = 0; j < grid[0].size(); j++) {
-                // Found a new island
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == '1') {
-                    dfs(grid, i, j);  // Sink the island
-                    ans++;           // Count it
+                    bfs(grid, i, j);  // Process entire island
+                    islandCount++;   // Count new island
                 }
             }
         }
 
-        return ans;  // Total number of islands found
+        return islandCount;
     }
 };
