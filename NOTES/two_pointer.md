@@ -1,43 +1,45 @@
 /*
- * Concept: Two Pointers (C++ Templates)
+ * Concept: Two Pointers
  *
  * Goal:
- * Use two indices to traverse a sequence from different directions or with different speeds
- * to solve problems more efficiently than brute-force.
+ * Efficiently traverse a string or array from two directions or at two speeds to solve problems in linear time.
  *
- * Types:
- * - Opposite pointers (e.g., one from left, one from right)
- * - Same-direction pointers (e.g., slow/fast or overwrite pointers)
+ * When to Use:
+ * - Checking symmetry (palindromes)
+ * - Finding pairs (e.g., two sum in sorted array)
+ * - Modifying arrays in-place (removing/partitioning elements)
+ * - Finding duplicates or cycles (linked lists, arrays)
  *
- * Key Use Cases:
- * - Palindrome checks
- * - Pairing elements (sum, diff, etc.)
- * - In-place array editing (removal, sorting)
- * - Partitioning / merging
+ * Common Patterns:
+ *
+ * 1. Opposite Direction (start from both ends):
+ *    - Use when comparing or narrowing inward from both sides
+ *    - Typical in palindrome checks, pair sums, or when skipping characters
+ *
+ * 2. Same Direction (read-write or fast-slow):
+ *    - Use when overwriting in-place or scanning with constraints
+ *    - Useful for partitioning, compaction, or finding cycles/midpoints
  *
  * Time Complexity: O(n)
- *   - Each pointer typically moves at most n steps
+ *   - Each pointer typically moves once per element
  *
  * Space Complexity: O(1)
- *   - Usually done in-place with no extra storage
+ *   - Operates in-place using just pointer variables
+ *
+ * Tips:
+ * - Watch for off-by-one errors (`left < right` vs `left <= right`)
+ * - Combine with sorting or hashing when necessary
+ * - Be careful with edge cases: empty input, single element, bounds checking
  */
 
-/*
- * -------------------------------
- * Opposite-Direction Two Pointers
- * -------------------------------
- * Use when you want to check symmetry or pairs from both ends.
- */
-
-bool isPalindrome(string& s) {
+// Opposite-direction two pointers
+bool processOppositeDirection(const string& s) {
     int left = 0, right = s.length() - 1;
 
     while (left < right) {
-        while (left < right && !isalnum(s[left])) left++;
-        while (left < right && !isalnum(s[right])) right--;
-
-        if (tolower(s[left]) != tolower(s[right])) return false;
-
+        if (/* condition fails */) {
+            return false;
+        }
         left++;
         right--;
     }
@@ -45,46 +47,26 @@ bool isPalindrome(string& s) {
     return true;
 }
 
-/*
- * -------------------------------
- * Same-Direction Two Pointers
- * -------------------------------
- * Use when writing or scanning in-place (e.g., removing elements).
- */
-
-int removeElement(vector<int>& nums, int val) {
+// Same-direction two pointers
+int processSameDirection(vector<int>& nums) {
     int write = 0;
     for (int read = 0; read < nums.size(); ++read) {
-        if (nums[read] != val) {
+        if (/* condition to keep nums[read] */) {
             nums[write++] = nums[read];
         }
     }
-    return write; // length of modified array
+    return write;
 }
 
-/*
- * -------------------------------
- * Tips to Remember
- * -------------------------------
- * - Use opposite pointers for problems involving symmetry (palindromes, reversing)
- * - Use same-direction pointers for in-place modifications or merging
- * - Be careful with pointer bounds (left < right vs left <= right)
- * - Combine with sorting for efficient search or pairing logic
- *
- * -------------------------------
- * Common Two Pointer Problems
- * -------------------------------
- * - Leetcode 125: Valid Palindrome (opposite)
- * - Leetcode 167: Two Sum II (sorted array)
- * - Leetcode 283: Move Zeroes (same-direction overwrite)
- * - Leetcode 680: Valid Palindrome II (skip one mismatch)
- * - Leetcode 26: Remove Duplicates from Sorted Array
- *
- * -------------------------------
- * Summary
- * -------------------------------
- * Two pointers is a versatile strategy used to reduce time complexity
- * from O(n^2) to O(n) in problems involving arrays or strings.
- * It is especially useful when you can process elements from both ends
- * or overwrite values in-place.
- */
+// Fast and slow pointer (e.g., finding cycles or midpoints)
+bool processFastSlow(const vector<int>& nums) {
+    int slow = 0, fast = 0;
+    while (fast < nums.size() && fast + 1 < nums.size()) {
+        slow++;
+        fast += 2;
+        if (/* condition involving slow and fast */) {
+            return true;
+        }
+    }
+    return false;
+}
