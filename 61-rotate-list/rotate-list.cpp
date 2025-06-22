@@ -8,32 +8,43 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
- using namespace std;
+
+using namespace std;
 
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head == nullptr || head->next == nullptr || k == 0)
+        // Edge case: empty list, single node, or no rotation needed
+        if (head == nullptr || head->next == nullptr || k == 0)
             return head;
-        
-        ListNode *curr, *temp;
-        temp = head;
+
+        ListNode* temp = head;
         int size = 0;
-        while(temp->next != nullptr){
-            size++; 
+
+        // Count the number of nodes in the list
+        while (temp->next != nullptr) {
+            size++;
             temp = temp->next;
-        }size++;
+        }
+        size++;  // Include the last node
+
+        // Normalize k to avoid unnecessary full rotations
         k = k % size;
-        if(k == 0)
+        if (k == 0)
             return head;
+
+        // Connect the last node to the head to form a circular list
         temp->next = head;
-        for(int i = 0; i < size - k ; i++){
+
+        // Move (size - k) steps to find the new tail
+        for (int i = 0; i < size - k; i++) {
             temp = temp->next;
         }
-            head = temp->next;
-            temp->next = nullptr;
 
-            return head;
-        }
+        // Set the new head and break the circle
+        head = temp->next;
+        temp->next = nullptr;
 
+        return head;
+    }
 };
