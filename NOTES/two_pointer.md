@@ -70,3 +70,14 @@ bool processFastSlow(const vector<int>& nums) {
     }
     return false;
 }
+
+//  Expand Around Cetner
+pair<int, int> expandFromCenter(const string& s, int left, int right) {
+    while (left >= 0 && right < s.size() && s[left] == s[right]) {
+        left--;
+        right++;
+    }
+    // Return the final indices of the palindrome substring
+    // Note: we expanded one too far on both sides
+    return {left + 1, right - 1};
+}
