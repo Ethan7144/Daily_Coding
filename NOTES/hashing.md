@@ -35,13 +35,18 @@ for (int num : nums) {
 }
 ```
 
-### Group by Propery
+### Grouping + Collecting by Signature
 ```cpp
 unordered_map<string, vector<string>> anagrams;
 for (string& word : words) {
     string sig = word;
     sort(sig.begin(), sig.end());
     anagrams[sig].push_back(word);
+}
+
+vector<vector<string>> result;
+for (auto& [sig, group] : anagrams) {
+    result.push_back(group);
 }
 ```
 
