@@ -30,3 +30,35 @@ class Logger {
         return true;
     }
 }
+
+// Now what if we want to delete old messages?
+
+class Logger {
+private:
+    unordered_map<string, unordered_map<string, int>> userLogs;
+    queue<tuple<int, string, string>> recentMessages;
+
+public:
+    // Checks if message can be printed for a given user based on last 10s
+    bool shouldPrintMessage(int timestamp, string userId, string message) {
+        // Clean up expired entries from the queue
+        while (!recentMessages.empty() && timestamp - get<0>(recentMessages.front()) >= 10) {
+            auto [oldTime, uid, msg] = recentMessages.front();
+            recentMessages.pop();
+            if (userLogs[uid][msg] == oldTime) {
+                userLogs[uid].erase(msg);
+            }
+        }
+
+        // Check current message timing
+        auto& userMap = userLogs[userId];
+        if (userMap.count(message) && timestamp - userMap[message] < 10)
+            return false;
+
+        // Log and queue the new message
+        userMap[message] = timestamp;
+        recentMessages.push({timestamp, userId, message});
+        return true;
+    }
+};
+
