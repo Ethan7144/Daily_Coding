@@ -39,7 +39,7 @@ bool canAttendMeetings(vector<vector<int>>& intervals) {
     for (int i = 1; i < intervals.size(); ++i) {
         if (intervals[i][0] < intervals[i-1][1]) return false;
     }
-    return true;
+    return true;77
 }
 ```
 
@@ -59,6 +59,30 @@ int leastInterval(vector<char>& tasks, int n) {
 }
 ```
 
+### Interval Coverage
+```cpp
+int minUpdateSessions(vector<pair<int, int>>& intervals) {
+    if (intervals.empty()) return 0;
+
+    // Sort by end time to greedily cover as many intervals as possible
+    sort(intervals.begin(), intervals.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
+        return a.second < b.second;
+    });
+
+    int sessions = 1; // Start with one session at the end of the first interval
+    int sessionTime = intervals[0].second;
+
+    for (const auto& interval : intervals) {
+        if (interval.first > sessionTime) {
+            // If the current interval starts after the last session time, we need a new session
+            ++sessions;
+            sessionTime = interval.second;
+        }
+    }
+
+    return sessions;
+}
+```
 ---
 
 ## Tips to Remember
