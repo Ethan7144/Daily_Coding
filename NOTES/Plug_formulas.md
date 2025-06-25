@@ -1,7 +1,5 @@
 
-# Amazon SDE 1 Coding Interview Cheat Sheet
-
-## 🔁 Sliding Window (Fixed and Variable Size)
+## Sliding Window (Fixed and Variable Size)
 
 ```cpp
 // Fixed-Size
@@ -23,7 +21,7 @@ for (int right = 0; right < s.size(); ++right) {
 }
 ```
 
-## 🔁 Two Pointers
+## Two Pointers
 
 ```cpp
 // Opposite direction (sorted array, palindromes)
@@ -41,7 +39,7 @@ for (int fast = 0; fast < nums.size(); ++fast) {
 }
 ```
 
-## 🔄 DFS / Backtracking
+## DFS / Backtracking
 
 ```cpp
 void dfs(int node, unordered_set<int>& visited) {
@@ -60,7 +58,7 @@ void backtrack(vector<int>& path) {
 }
 ```
 
-## 🧭 BFS (Queue)
+## BFS (Queue)
 
 ```cpp
 queue<int> q;
@@ -77,7 +75,7 @@ while (!q.empty()) {
 }
 ```
 
-## 🔍 Binary Search
+## Binary Search
 
 ```cpp
 int left = 0, right = nums.size() - 1;
@@ -89,7 +87,7 @@ while (left <= right) {
 }
 ```
 
-## 🧮 Prefix Sum + HashMap
+## Prefix Sum + HashMap
 
 ```cpp
 unordered_map<int, int> seen = {{0, -1}};
@@ -101,7 +99,7 @@ for (int i = 0; i < nums.size(); ++i) {
 }
 ```
 
-## 🥇 Min/Max Heap (Top K Elements)
+## Min/Max Heap (Top K Elements)
 
 ```cpp
 priority_queue<int, vector<int>, greater<>> minHeap;

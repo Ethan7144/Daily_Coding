@@ -1,14 +1,14 @@
 
-# 📘 Prefix Sum Summary
+# Prefix Sum Summary
 
-## ✅ What Is Prefix Sum?
+## What Is Prefix Sum?
 
 Prefix Sum is a running total of elements in an array.  
 It allows you to calculate the sum of any subarray in O(1) time after preprocessing.
 
 ---
 
-## 🧠 When to Use Prefix Sum
+## When to Use Prefix Sum
 
 - Need to find **sum of subarrays**
 - Need to track **running totals**
@@ -30,7 +30,7 @@ for (int i = 0; i < n; ++i) {
 
 ---
 
-## 🔍 With HashMap (for Target Subarray Sum = k)
+## With HashMap (for Target Subarray Sum = k)
 
 ```cpp
 unordered_map<int, int> seen = {{0, -1}};
@@ -46,7 +46,7 @@ for (int i = 0; i < nums.size(); ++i) {
 
 ---
 
-## 🔍 Use Cases
+## Use Cases
 
 | Problem Type                          | Use Prefix Sum? |
 |--------------------------------------|------------------|
@@ -57,7 +57,7 @@ for (int i = 0; i < nums.size(); ++i) {
 
 ---
 
-## ⚠️ Tips
+## Tips
 
 - Always initialize prefix sum 0 at index -1 when using a hashmap (to capture subarrays starting at index 0)
 - Be careful with duplicates — only store first occurrence unless problem says otherwise
@@ -65,7 +65,7 @@ for (int i = 0; i < nums.size(); ++i) {
 
 ---
 
-## 🧩 Common Problems
+## Common Problems
 
 - Leetcode 560: Subarray Sum Equals K
 - Leetcode 325: Maximum Size Subarray Sum Equals k

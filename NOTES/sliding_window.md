@@ -1,25 +1,25 @@
 # Sliding Window (C++ Templates)
 
-## 🔍 Concept
+## Concept
 
 Efficiently analyze contiguous subarrays or substrings without recalculating from scratch.
 
 ---
 
-# 🧠 How to Tell It's a Sliding Window Problem
+# How to Tell It's a Sliding Window Problem
 
-## ✅ Ask Yourself:
+## Ask Yourself:
 
 - Are you dealing with a **contiguous** segment of an array or string?
 - Do you need to **process or maintain** data as this segment **moves**?
 - Are you optimizing over **ranges** (min/max/length/sum/frequency)?
 - Is performance too slow with brute-force checks for every subarray?
 
-If yes → 🔥 It's probably a **sliding window**.
+If yes → It's probably a **sliding window**.
 
 ---
 
-## 📌 Patterns and Clues
+## Patterns and Clues
 
 | Clue                                        | Implication           |
 |---------------------------------------------|------------------------|
@@ -31,7 +31,7 @@ If yes → 🔥 It's probably a **sliding window**.
 
 ---
 
-## ✅ Common Combinations
+## Common Combinations
 
 | Pattern Combo             | Use Case                                  |
 |---------------------------|--------------------------------------------|
@@ -42,7 +42,7 @@ If yes → 🔥 It's probably a **sliding window**.
 
 ---
 
-## ❌ Not Sliding Window When:
+## Not Sliding Window When:
 
 - You’re choosing non-contiguous elements → Use **backtracking**
 - Problem is best solved with prefix sums, sorting, or greedy
@@ -50,7 +50,7 @@ If yes → 🔥 It's probably a **sliding window**.
 
 ---
 
-## 🎯 Test Cases to Practice
+## Test Cases to Practice
 
 - Leetcode 3: Longest Substring Without Repeating Characters
 - Leetcode 76: Minimum Window Substring
@@ -59,7 +59,7 @@ If yes → 🔥 It's probably a **sliding window**.
 - Leetcode 1456: Max Vowels in Substring of Length K
 
 
-## 🧠 Types of Sliding Window
+## Types of Sliding Window
 
 ### 1. **Fixed-Size Window**
 - Window size is constant (e.g. `length = k`)
@@ -71,7 +71,7 @@ If yes → 🔥 It's probably a **sliding window**.
 
 ---
 
-## ⚡ Key Use Cases
+## Key Use Cases
 
 - Maximum/minimum/average in subarrays of size `k`
 - Longest substring with/without repeated characters
@@ -80,17 +80,17 @@ If yes → 🔥 It's probably a **sliding window**.
 
 ---
 
-## ⏱ Time Complexity
+## Time Complexity
 
 - `O(n)` — each element is added and removed at most once
 
-## 📦 Space Complexity
+## Space Complexity
 
 - `O(1)` to `O(k)` — depends on what you store inside the window (set, map, counts, etc.)
 
 ---
 
-## 🧩 Fixed-Size Sliding Window Template
+## Fixed-Size Sliding Window Template
 
 ```cpp
 int fixedSizeSlidingWindow(string& s, int k) {
@@ -152,7 +152,7 @@ Always test edge cases: empty input, window size 0, all same elements, etc.
 
 ---
 
-## 🧪 Common Sliding Window Problems
+## Common Sliding Window Problems
 
 | Problem | Type |
 |--------|------|
@@ -164,7 +164,7 @@ Always test edge cases: empty input, window size 0, all same elements, etc.
 
 ---
 
-## ✅ Summary
+## Summary
 
 Sliding window is a go-to technique for linear-time solutions involving contiguous segments.  
 Use **fixed-size** when the window length is static, and **variable-size** when constraints control window size dynamically.  
